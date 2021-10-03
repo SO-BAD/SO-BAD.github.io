@@ -1,12 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="jquery-3.6.0.min.js"></script> 
+    <script>
+        function test() {
+            var appUrl = 'https://script.google.com/macros/s/AKfycbw12wBv-fXwjBCiaaQQTsztlZ6IP9xmCpOH6e-zFuvQqc387bHQHECkmrrGwDBs-Jxj/exec';
+            var parameter = {
+                sheetUrl: 'https://docs.google.com/spreadsheets/d/1ICMyHT0eQRhUpNqB-gNzlXqqlxJj4iUy5don3quX8gk/edit#gid=0',
+                sheetTag: 'note'
+            }
+            $.get(appUrl, parameter);
+        }
+    </script>
 </head>
+
 <body>
-    2132132132
+    <div style="width: 500px;height:500px;background:powderblue;position:relative; top:30px;">
+        
+        <input type="submit" value="提交" onclick="test()"><br>
 </body>
+
 </html>
