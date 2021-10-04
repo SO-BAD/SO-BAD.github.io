@@ -6,23 +6,181 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="jquery-3.6.0.min.js"></script> 
+    <script src="jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="index.css">
     <script>
         function test() {
-            var appUrl = 'https://script.google.com/macros/s/AKfycbw12wBv-fXwjBCiaaQQTsztlZ6IP9xmCpOH6e-zFuvQqc387bHQHECkmrrGwDBs-Jxj/exec';
-            var parameter = {
-                sheetUrl: 'https://docs.google.com/spreadsheets/d/1ICMyHT0eQRhUpNqB-gNzlXqqlxJj4iUy5don3quX8gk/edit#gid=0',
-                sheetTag: 'note'
+            // var x=document.getElementById("date").value;
+            var a = ["date", "note", "read"];
+            var b = 0;
+            for (let i = 0; i < 3; i++) {
+                if (document.getElementById(a[i]).value == "") {
+                    document.getElementById(a[i] + "_d4").innerText = "請輸入";
+                } else {
+                    document.getElementById(a[i] + "_d4").innerText = "";
+                    b++;
+                }
             }
-            $.get(appUrl, parameter);
+            if (b == 3) {
+                set_g();
+            } else {
+                b = 0;
+            }
         }
+
+        function set_g() {
+            var appUrl = 'https://script.google.com/macros/s/AKfycbz72q9RzQ995ro3BaGzgUpddmIWjQ8IHumU6RQngzk7dNIlWnIFDB9ctPJmm01Cn68w/exec';
+            var less = document.getElementById("less").value;
+            var date = document.getElementById("date").value;
+            var who = document.getElementById("who").value;
+            var note = document.getElementById("note").value;
+            var read = document.getElementById("read").value;
+            var parameter = {
+                sheetClass: less,
+                sheetDate: date,
+                sheetWho: who,
+                sheetNote: note,
+                sheetRead: read
+            }
+
+            $.get(appUrl, parameter);
+            document.getElementById("date").value = "";
+            document.getElementById("note").value = "";
+            document.getElementById("read").value = "";
+            alert('感謝分享!!');
+        }
+        function get_g() {
+            var appUrl = 'https://script.google.com/macros/s/AKfycbz7-xq5ooKCga3qVeu6t284pIAQc_wRXyNb0aAySSWufKVuKfZ9iTCGKxszGmghyFk/exec';
+            var less = document.getElementById("g_less").value;
+            var parameter = {
+                sheetClass: less
+            }
+            var f = document.getElementById("tb");
+            while (f.hasChildNodes()) {
+                f.removeChild(f.lastChild);
+            }
+            $.get(appUrl, parameter, function (arr) {
+                if(!arr){
+                    alert('查無資料');
+                }
+                else{
+                var arr = arr.split(',');
+                var ct = arr.length / 5;
+                for (let i = 0; i < ct; i++) {
+                    var tb = document.getElementById("tb");
+                    var x = document.createElement("tr");
+                    x.setAttribute("id", "tr" + i);
+                    tb.appendChild(x);
+                    var xx = document.getElementById("tr" + i);
+                    for (let j = 0; j < 5; j++) {
+                        var y = document.createElement("td");
+                        y.setAttribute("id", "y" + (j+i*5));
+                        y.setAttribute("class", "c"+j);
+                        xx.appendChild(y);
+                        if (j == 1) {
+                            var ddd = new Date(arr[j + i * 5]);
+                            document.getElementById("y" + (j+i*5)).innerText = ddd.getFullYear() + "-" + (ddd.getMonth() + 1) + "-" + ddd.getDate();
+                        } else if (j == 3) {
+                            // var a3 = document.getElementById("y3");
+                            // var aa = document.createElement("a");
+                            // aa.setAttribute("href",arr[j + i * 5]);
+                            // aa.setAttribute("innerText","請點");
+                            // a3.appendChild(aa);
+                            document.getElementById("y"+(j+i*5)).innerHTML = "<a href=" + arr[j + i * 5] + " target='_blank'>請點</a>";
+                        } else {
+                            document.getElementById("y" + (j+i*5)).innerText = arr[j + i * 5];
+                        }
+                    }
+                }
+                }
+            });
+        }
+
     </script>
 </head>
 
 <body>
-    <div style="width: 500px;height:500px;background:powderblue;position:relative; top:30px;">
-        
-        <input type="submit" value="提交" onclick="test()"><br>
+    <div>
+        <div id="left">
+            課程:
+            <select name="" id="less">
+                <option value="資料庫程式設計">資料庫程式設計</option>
+                <option value="網頁排版編輯">網頁排版編輯</option>
+                <option value="視覺影像設計">視覺影像設計</option>
+                <option value="網頁動態技術">網頁動態技術</option>
+                <option value="數位媒體應用">數位媒體應用</option>
+                <option value="資訊網路概論">資訊網路概論</option>
+                <option value="網頁設計實務">網頁設計實務</option>
+                <option value="班會/其他">班會/其他</option>
+            </select>
+            <br>
+            日期:<input id="date" type="date" min="2021-09-27" max="2022-03-21"><br>
+            <font id="date_d4"></font>
+            <br>
+            分享者:
+            <select name="" id="who">
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="劉勤永 老師">劉勤永 老師</option>
+                <option value="鄭光凱 老師">鄭光凱 老師</option>
+                <option value="蔡坤炎 老師">蔡坤炎 老師</option>
+                <option value="老師">老師</option>
+            </select><br>
+            連結:<br>
+            <input id="note" type="text" style="width: 400px;"><br>
+            <font id="note_d4"></font><br>
+            簡介:<br>
+            <input id="read" type="text" style="width: 400px;"><br>
+            <font id="read_d4"></font><br>
+            <input type="submit" value="分享" onclick="test()"><br>
+        </div>
+        <div id="content">
+            <select name="" id="g_less">
+                <option value="資料庫程式設計">資料庫程式設計</option>
+                <option value="網頁排版編輯">網頁排版編輯</option>
+                <option value="視覺影像設計">視覺影像設計</option>
+                <option value="網頁動態技術">網頁動態技術</option>
+                <option value="數位媒體應用">數位媒體應用</option>
+                <option value="資訊網路概論">資訊網路概論</option>
+                <option value="網頁設計實務">網頁設計實務</option>
+                <option value="班會/其他">班會/其他</option>
+            </select>
+            <input type="submit" value="查詢" onclick="get_g()"><br>
+            <table style="width:1000px; ">
+                <tr>
+                    <th class="c0">課程</th>
+                    <th class="c1">日期</th>
+                    <th class="c2">分享者</th>
+                    <th class="c3">連結</th>
+                    <th class="c4">簡介</th>
+                </tr>
+            </table>
+            <table id="tb" style="width:1000px;">
+            </table>
+        </div>
+    </div>
 </body>
 
 </html>
