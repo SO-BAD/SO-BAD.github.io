@@ -14,11 +14,22 @@
             var a = ["date", "note", "read"];
             var b = 0;
             for (let i = 0; i < 3; i++) {
-                if (document.getElementById(a[i]).value == "") {
-                    document.getElementById(a[i] + "_d4").innerText = "請輸入";
+                if (i == 1) {
+                    var note = document.getElementById("note").value;
+                    if(note.slice(0,17) =='https://hackmd.io'){
+                        document.getElementById(a[i] + "_d4").innerText = "";
+                        b++;
+                    }else{
+                        document.getElementById(a[i] + "_d4").innerText = "請輸入hackmd網址";
+                    }
+                    // 'https://hackmd.io'
                 } else {
-                    document.getElementById(a[i] + "_d4").innerText = "";
-                    b++;
+                    if (document.getElementById(a[i]).value == "") {
+                        document.getElementById(a[i] + "_d4").innerText = "請輸入";
+                    } else {
+                        document.getElementById(a[i] + "_d4").innerText = "";
+                        b++;
+                    }
                 }
             }
             if (b == 3) {
@@ -60,38 +71,38 @@
                 f.removeChild(f.lastChild);
             }
             $.get(appUrl, parameter, function (arr) {
-                if(!arr){
+                if (!arr) {
                     alert('查無資料');
                 }
-                else{
-                var arr = arr.split(',');
-                var ct = arr.length / 5;
-                for (let i = 0; i < ct; i++) {
-                    var tb = document.getElementById("tb");
-                    var x = document.createElement("tr");
-                    x.setAttribute("id", "tr" + i);
-                    tb.appendChild(x);
-                    var xx = document.getElementById("tr" + i);
-                    for (let j = 0; j < 5; j++) {
-                        var y = document.createElement("td");
-                        y.setAttribute("id", "y" + (j+i*5));
-                        y.setAttribute("class", "c"+j);
-                        xx.appendChild(y);
-                        if (j == 1) {
-                            var ddd = new Date(arr[j + i * 5]);
-                            document.getElementById("y" + (j+i*5)).innerText = ddd.getFullYear() + "-" + (ddd.getMonth() + 1) + "-" + ddd.getDate();
-                        } else if (j == 3) {
-                            // var a3 = document.getElementById("y3");
-                            // var aa = document.createElement("a");
-                            // aa.setAttribute("href",arr[j + i * 5]);
-                            // aa.setAttribute("innerText","請點");
-                            // a3.appendChild(aa);
-                            document.getElementById("y"+(j+i*5)).innerHTML = "<a href=" + arr[j + i * 5] + " target='_blank'>請點</a>";
-                        } else {
-                            document.getElementById("y" + (j+i*5)).innerText = arr[j + i * 5];
+                else {
+                    var arr = arr.split(',');
+                    var ct = arr.length / 5;
+                    for (let i = 0; i < ct; i++) {
+                        var tb = document.getElementById("tb");
+                        var x = document.createElement("tr");
+                        x.setAttribute("id", "tr" + i);
+                        tb.appendChild(x);
+                        var xx = document.getElementById("tr" + i);
+                        for (let j = 0; j < 5; j++) {
+                            var y = document.createElement("td");
+                            y.setAttribute("id", "y" + (j + i * 5));
+                            y.setAttribute("class", "c" + j);
+                            xx.appendChild(y);
+                            if (j == 1) {
+                                var ddd = new Date(arr[j + i * 5]);
+                                document.getElementById("y" + (j + i * 5)).innerText = ddd.getFullYear() + "-" + (ddd.getMonth() + 1) + "-" + ddd.getDate();
+                            } else if (j == 3) {
+                                // var a3 = document.getElementById("y3");
+                                // var aa = document.createElement("a");
+                                // aa.setAttribute("href",arr[j + i * 5]);
+                                // aa.setAttribute("innerText","請點");
+                                // a3.appendChild(aa);
+                                document.getElementById("y" + (j + i * 5)).innerHTML = "<a href=" + arr[j + i * 5] + " target='_blank'>請點</a>";
+                            } else {
+                                document.getElementById("y" + (j + i * 5)).innerText = arr[j + i * 5];
+                            }
                         }
                     }
-                }
                 }
             });
         }
