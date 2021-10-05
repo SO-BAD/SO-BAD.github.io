@@ -4,6 +4,32 @@ font{
 body{
     margin:0px;
 }
+#full{
+    position: fixed;
+    background-color:black;
+    opacity: 0;
+    z-index: -1;
+}
+#load{
+    width: 60px;
+    height: 60px;
+    border-radius: 33px;
+    border: 3px solid green;
+	border-right: 3px solid #fff;
+	border-bottom: 3px solid #fff;
+	-webkit-animation: ll 1s infinite linear;
+	-moz-animation: ll 1s infinite linear;
+	-o-animation: ll 1s infinite linear;
+	animation: ll 1s infinite linear;
+}
+@keyframes ll {
+    from {
+		-webkit-transform: rotate(0deg);
+	}
+	to {
+		-webkit-transform: rotate(360deg);
+	}
+}
 th,tr,td {
     border: 1px solid purple;
     background-color:seashell;

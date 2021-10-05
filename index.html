@@ -40,6 +40,7 @@
         }
 
         function set_g() {
+
             var appUrl = 'https://script.google.com/macros/s/AKfycbz72q9RzQ995ro3BaGzgUpddmIWjQ8IHumU6RQngzk7dNIlWnIFDB9ctPJmm01Cn68w/exec';
             var less = document.getElementById("less").value;
             var date = document.getElementById("date").value;
@@ -61,6 +62,8 @@
             alert('感謝分享!!');
         }
         function get_g() {
+            document.getElementById("full").style.opacity = "0.7";
+            document.getElementById("full").style.zIndex = "1";
             var appUrl = 'https://script.google.com/macros/s/AKfycbz7-xq5ooKCga3qVeu6t284pIAQc_wRXyNb0aAySSWufKVuKfZ9iTCGKxszGmghyFk/exec';
             var less = document.getElementById("g_less").value;
             var parameter = {
@@ -70,6 +73,7 @@
             while (f.hasChildNodes()) {
                 f.removeChild(f.lastChild);
             }
+
             $.get(appUrl, parameter, function (arr) {
                 if (!arr) {
                     alert('查無資料');
@@ -105,13 +109,31 @@
                     }
                 }
             });
+            
+            setTimeout(function(){
+                document.getElementById('full').style.opacity = 0;
+                document.getElementById('full').style.zIndex = -1;
+            }
+            ,3200);
         }
-
+        function full(){
+			var ww = window.innerWidth;
+			var hh = window.innerHeight;
+            document.getElementById("full").style.width=ww+"px";
+            document.getElementById("full").style.height=hh+"px";
+            document.getElementById("load").style.marginLeft=(ww-66)/2+"px";
+            document.getElementById("load").style.marginTop=(hh-66)/2+"px";
+        }
     </script>
 </head>
 
-<body>
+<body onload = "full()" onresize="full()" >
     <div>
+        <div id ="full" >
+            <div id ="load">
+
+            </div>
+        </div>
         <div id="left">
             課程:
             <select name="" id="less">
@@ -193,5 +215,4 @@
         </div>
     </div>
 </body>
-
 </html>
