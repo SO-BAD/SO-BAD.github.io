@@ -3,6 +3,7 @@ font{
 }
 body{
     margin:0px;
+    background-color:#ddd;
 }
 #full{
     position: fixed;
@@ -42,6 +43,7 @@ th,tr,td {
     float:left;
     margin-top:100px;
     margin-left:30px;
+    border: 3px solid darkcyan;
 }
 #content{
     width:1000px;
@@ -51,6 +53,7 @@ th,tr,td {
     float:left;
     margin-top: 30px;
     margin-left: 500px;
+    border: 3px solid gray;
 }
 .c0{
     width: 120px;
@@ -71,4 +74,18 @@ th,tr,td {
 .c4{
     width: 620px;
 }
-
+.c0:hover{
+    background:powderblue;
+}
+.c1:hover{
+    background:powderblue;
+}
+.c2:hover{
+    background:powderblue;
+}
+.c3:hover{
+    background:powderblue;
+}
+.c4:hover{
+    background:powderblue;
+}

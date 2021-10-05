@@ -77,6 +77,8 @@
             $.get(appUrl, parameter, function (arr) {
                 if (!arr) {
                     alert('查無資料');
+                    document.getElementById('full').style.opacity = 0;
+                    document.getElementById('full').style.zIndex = -1;
                 }
                 else {
                     var arr = arr.split(',');
@@ -107,14 +109,10 @@
                             }
                         }
                     }
+                    document.getElementById('full').style.opacity = 0;
+                    document.getElementById('full').style.zIndex = -1;
                 }
             });
-            
-            setTimeout(function(){
-                document.getElementById('full').style.opacity = 0;
-                document.getElementById('full').style.zIndex = -1;
-            }
-            ,3200);
         }
         function full(){
 			var ww = window.innerWidth;
