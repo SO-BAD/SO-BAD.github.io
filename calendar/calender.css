@@ -1,0 +1,30 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    margin: 0;
+}
+#main{
+    width: 770px;
+    height: 770px;
+    background: lightcyan;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+
+}
+.cal_header{
+    width: 100%;
+    height: 30px;
+    border: 1px solid pink;
+    text-align: center;
+    line-height: 25px;
+}
+.dayOfweek{
+    width: 110px;
+    height: 30px;
+    border: 1px solid pink;
+    text-align: center;
+    line-height: 25px;
+}
