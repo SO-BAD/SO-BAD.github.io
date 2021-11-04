@@ -9,8 +9,31 @@ body{
 .aside{
     flex-basis: 100px;
     min-width: 100px;
-    background-color: blue;
+    display: flex;
 }
+.aside:hover div{
+    opacity: 1;
+    transition: 1s;
+}
+.aside>div{
+    width: 70px;
+    height: 70px;
+    margin: auto;
+    background: pink;
+    border-radius: 50%;
+    opacity: 0.3;
+    /* animation-name: left;
+    animation-duration:1.5s;
+    animation-iteration-count:infinite; */
+}
+/* @keyframes left{
+    0%{
+        margin-left: 0;
+    }
+    100%{
+        margin-left: -20px;
+    }
+} */
 #main{
     flex-basis: 770px;
     min-width: 770px;
